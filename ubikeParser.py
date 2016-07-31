@@ -28,6 +28,16 @@ data = data.decode("utf-8") #到這一步才能把 byte 轉成 string
 text1 = json.loads(data)
 
 result = text1["retVal"]
+
+key01 = result['0001']
+
+
+rawKeys = []
+for each in result.keys():
+    rawKeys.append(each)
+
+rawKeys.sort()
+
 """
 b4csv = pd.DataFrame(result)
 
