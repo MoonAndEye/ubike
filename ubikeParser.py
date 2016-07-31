@@ -6,12 +6,13 @@ import urllib.request
 import datetime
 import json
 import pandas as pd
-import gzip, zlib
+import gzip
+
 
 d0 = datetime.datetime.now() #d0 是今天
 d0 = d0.strftime("%Y-%m-%d_%H%M%S")
 
-file_path = 'C:/1save/ubike/'
+
 
 file_name = "test.gz"
 
@@ -29,6 +30,8 @@ text1 = json.loads(data)
 
 rawResult = text1["retVal"]
 
+"""
+#以下不需要了,直接用 DataFrame.T 行列互換
 key01 = rawResult['0001']
 
 
@@ -40,7 +43,18 @@ rawKeys.sort()
 
 csvColVal = [each for each in rawResult[rawKeys[0]].keys()]
 
-csvColVal.sort()
+csvColVal.sort() #這就是之後寫到csv的item
+#csvColVal.append("id") #這一項目不用,dic裡面的"sno"就是停車場id
+"""
+
+b4csv = pd.DataFrame(data = rawResult)
+b4csv = b4csv.T
+
+file_path = 'C:/1save/ubike/'
+
+csvName = d0 + ".csv"
+
+b4csv.to_csv(file_path + csvName)
 
 """
 b4csv = pd.DataFrame(result)
