@@ -41,6 +41,7 @@ while True:
     csvName = d0 + ".csv"
 
     fincsv.to_csv(file_path + csvName)
+    print(d0 + " is done")
     sleep(50) #這邊改成50 比較好,因為他會有delay
 """
 b4csv = pd.DataFrame(result)
