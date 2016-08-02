@@ -33,12 +33,9 @@ while True:
     
     b4csv = pd.DataFrame(data = rawResult)
     b4csv = b4csv.T
-    
-    fincsv = pd.DataFrame(index = b4csv["sno"])
-    fincsv["bemp"] = b4csv["bemp"]
-    fincsv["sbi"] = b4csv["sbi"]
-    fincsv["tot"] = b4csv["tot"]
-    fincsv["act"] = b4csv["act"]
+    b4csv["sno"] = b4csv["sno"].astype(str)
+    #fincsv = pd.DataFrame(index = b4csv.index.values)
+    fincsv = pd.DataFrame(b4csv[["sno", "bemp", "sbi", "tot", "act"]])
     
 
     csvName = d0 + ".csv"
